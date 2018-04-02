@@ -31,6 +31,12 @@ void loop() {
   int pitch = map(analogRead(1),0,1023,0,255); //Mapped to range of available pitch values.
   int bend = map(analogRead(2),0,1023,0,15); //Mapped to range of available bend values.
   int speechSpeed = map(analogRead(0),0,1023,0,127); //Mapped to range of available speedvalues.
+
+  
+  char message[] = {96, 21, 114, 22, 88, 23, 5, 183, 7, 159, 146, 164};  //Hello  (see PhraseALator for dictionary)
+  speakJet.print(message);  //speak "Hello" according to above
+
+  
   if (digitalRead(2) == HIGH) {
   speakJet.write(0x15); //Send speed command
   speakJet.write(map(speechSpeed,0,127,0x7F,0x0)); //Send speed value mapped to hex
